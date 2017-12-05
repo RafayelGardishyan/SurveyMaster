@@ -1,6 +1,3 @@
-from .appJar import gui
-print("Imported GUI package")
-
 class Main_View:
     def __init__(self, DBOBJECT, *VIEWOBJECTS):
         self.views = {}
