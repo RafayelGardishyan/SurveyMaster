@@ -35,10 +35,14 @@ class db:
 
         query = """INSERT INTO """ + table + """(""" + colscomma + """) VALUES(""" + valusecomma + """)"""
 
+
         print("Inserting query: " + query)
 
-        self.cursor.execute(query)
-        print("Successfully inserted into " + table)
+        try:
+            self.cursor.execute(query)
+            print("Successfully inserted into " + table)
+        except:
+            print("Failed to insert")
 
 
     def selectpv(self, table, param, value):
@@ -46,22 +50,24 @@ class db:
 
         print("Selecting query: " + query)
 
-        self.cursor.execute(query)
-
-        print("Successfully selected")
-
-        return self.cursor.fetchall()
+        try:
+            self.cursor.execute(query)
+            print("Successfully selected")
+            return self.cursor.fetchall()
+        except:
+            print("failed to select")
 
     def selectall(self, table):
         query = """SELECT *  FROM """ + table
 
         print("Selecting query: " + query)
 
-        self.cursor.execute(query)
-
-        print("Successfully selected")
-
-        return self.cursor.fetchall()
+        try:
+            self.cursor.execute(query)
+            print("Successfully selected")
+            return self.cursor.fetchall()
+        except:
+            print("Failed to select")
 
     def createtable(self, tablename, *cols):
         columns = []
@@ -78,7 +84,8 @@ class db:
         query = """CREATE TABLE """ + tablename + """ (id integer PRIMARY KEY, """ + colscomma + """)"""
 
         print("Creating table with: " + query)
-
-        self.cursor.execute(query)
-
-        print("Successfully created table \"" + tablename + "\"")
+        try:
+            self.cursor.execute(query)
+            print("Successfully created table \"" + tablename + "\"")
+        except:
+            print("Table exists or failed to create")
