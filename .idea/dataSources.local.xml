@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="SurveyMaker.sqlite" uuid="d36dc822-dd83-44a0-8335-11926ef2a18e">
+    <data-source name="SurveyMaker.sqlite" uuid="78bb6e0c-4721-47f4-9229-1d072d84da1d">
       <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
       <auth-required>false</auth-required>

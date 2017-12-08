@@ -9,8 +9,23 @@ class db:
 
         self.cursor = self.db.cursor()
         print("Created cursor")
+        self.closeDB()
 
-    def insert(self, table, *cols, **vals):
+
+    def openDB(self):
+        self.db = sqlite3.connect(self.DBNAME)
+        print("Connected to database")
+
+        self.cursor = self.db.cursor()
+        print("Created cursor")
+
+    def closeDB(self):
+        self.db.commit()
+        self.db.close()
+        print("Closed database")
+
+    def insert(self, table, *cols, vals):
+        self.openDB()
         values = []
         columns = []
         valusecomma = ""
@@ -29,9 +44,9 @@ class db:
 
         for i in values:
             if i != values[0]:
-                valusecomma += "," + i
+                valusecomma +=", \"" + i + "\""
             else:
-                valusecomma += i
+                valusecomma += "\"" + i + "\""
 
         query = """INSERT INTO """ + table + """(""" + colscomma + """) VALUES(""" + valusecomma + """)"""
 
@@ -44,8 +59,10 @@ class db:
         except:
             print("Failed to insert")
 
+        self.closeDB()
 
     def selectpv(self, table, param, value):
+        self.openDB()
         query = """SELECT *  FROM """ + table + """ WHERE """ + param + """=""" + value
 
         print("Selecting query: " + query)
@@ -57,7 +74,25 @@ class db:
         except:
             print("failed to select")
 
+        self.closeDB()
+
+    def selectpvptg(self, table, param, value, paramtoget):
+        self.openDB()
+        query = """SELECT """ + paramtoget + """  FROM """ + table + """ WHERE """ + param + """=\"""" + value + "\""
+
+        print("Selecting query: " + query)
+
+        try:
+            self.cursor.execute(query)
+            print("Successfully selected")
+            return self.cursor.fetchall()
+        except:
+            print("failed to select")
+
+        self.closeDB()
+
     def selectall(self, table):
+        self.openDB()
         query = """SELECT *  FROM """ + table
 
         print("Selecting query: " + query)
@@ -68,8 +103,10 @@ class db:
             return self.cursor.fetchall()
         except:
             print("Failed to select")
+        self.closeDB()
 
     def createtable(self, tablename, *cols):
+        self.openDB()
         columns = []
         colscomma = ""
         for col in cols:
@@ -89,3 +126,4 @@ class db:
             print("Successfully created table \"" + tablename + "\"")
         except:
             print("Table exists or failed to create")
+        self.closeDB()

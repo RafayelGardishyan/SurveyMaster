@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="SurveyMaker.sqlite" uuid="d36dc822-dd83-44a0-8335-11926ef2a18e">
+    <data-source source="LOCAL" name="SurveyMaker.sqlite" uuid="78bb6e0c-4721-47f4-9229-1d072d84da1d">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/SurveyMaker.sqlite</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\rgard\PycharmProjects\SurveyMaster\Engine\SurveyMaker.sqlite</jdbc-url>
       <driver-properties>
         <property name="enable_load_extension" value="true" />
       </driver-properties>

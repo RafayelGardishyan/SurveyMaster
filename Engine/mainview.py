@@ -24,7 +24,10 @@ class Main_View:
                 self.views[view].loadInterface()
 
     def sl(self):
-        print("sl")
+        for view in self.views:
+            if view == "Survey List View":
+                self.views[view].requieredActions()
+                self.views[view].loadInterface()
 
     def tas(self):
         print("tas")
